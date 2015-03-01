@@ -1,0 +1,1 @@
+A member roster plugin for wordpress that draws from a Google Spreadsheet API to create a member list
