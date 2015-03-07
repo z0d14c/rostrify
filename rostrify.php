@@ -15,6 +15,36 @@
 /**
  * Unopinionated transport interface. This is what everything should expect to interact with
  */
+
+set_include_path(get_include_path() . PATH_SEPARATOR . '/var/www/wp-content/libs/google-api-php-client/src');
+$client_id = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm.apps.googleusercontent.com';
+$client_email = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm@developer.gserviceaccount.com';
+$private_key = file_get_contents('keys/WordpressProject-f31a9b7a563d.p12');
+$scopes = array();
+$credentials = new Google_Auth_AssertionCredentials(
+    $client_email,
+    $scopes,
+    $private_key
+);
+
+$client = new Google_Client();
+$client->setAssertionCredentials($credentials);
+if ($client->getAuth()->isAccessTokenExpired()){
+    $client->getAuth()->refreshTokenWithAssertion();
+};
+
+
+
+//$client_secret;
+//$refresh_token;
+//$url;
+
+
+
+
+
+
+
 interface MyPluginTransportInterface
 {
     /**
@@ -32,7 +62,7 @@ interface MyPluginTransportInterface
  */
 class MyPluginTransport implements MyPluginTransportInterface
 {
-    public $CLIENTID = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm.apps.googleusercontent.com';
+    public $CLIENTID;
     public $url;
 
 
