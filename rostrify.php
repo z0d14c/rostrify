@@ -29,11 +29,30 @@ if ($client->getAuth()->isAccessTokenExpired()){
     $client->getAuth()->refreshTokenWithAssertion();
 };
 
+function authenticateWithGoogle(){
+    $client_id = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm.apps.googleusercontent.com';
+    $client_email = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm@developer.gserviceaccount.com';
+    $private_key = file_get_contents('/var/www/wp-content/plugins/rostrify/keys/WordpressProject-f31a9b7a563d.p12');
+    $scopes = array('https://www.googleapis.com/auth/drive', 'https://spreadsheets.google.com/feeds');
+    $credentials = new Google_Auth_AssertionCredentials(
+        $client_email,
+        $scopes,
+        $private_key
+    );
+    $client = new Google_Client();
+    $client->setAssertionCredentials($credentials);
+    if ($client->getAuth()->isAccessTokenExpired()){
+        $client->getAuth()->refreshTokenWithAssertion();
+    };
+    return $client;
+}
+
 
 function output_rostrify_stuff(){
-    echo $this->$client_id;
-//    echo $this->$client->getAuth();
+    $client = authenticateWithGoogle();
+    echo $client->$client_id;
 }
+
 
 //$client_secret;
 //$refresh_token;
