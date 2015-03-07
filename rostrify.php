@@ -50,7 +50,7 @@ function authenticateWithGoogle(){
 
 function output_rostrify_stuff(){
     $client = authenticateWithGoogle();
-    echo $client->$client_id;
+    echo 'WHY DOES NOTHING WORK IN THIS LIFE';
 }
 
 
