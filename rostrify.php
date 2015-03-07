@@ -26,7 +26,6 @@ $credentials = new Google_Auth_AssertionCredentials(
     $scopes,
     $private_key
 );
-
 $client = new Google_Client();
 $client->setAssertionCredentials($credentials);
 if ($client->getAuth()->isAccessTokenExpired()){
@@ -34,7 +33,9 @@ if ($client->getAuth()->isAccessTokenExpired()){
 };
 
 
-
+function output_rostrify_stuff(){
+    echo 'HEY DUDE HOW YA DOIN LOLOLOL';
+}
 
 //$client_secret;
 //$refresh_token;
