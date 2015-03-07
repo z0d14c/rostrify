@@ -31,7 +31,8 @@ if ($client->getAuth()->isAccessTokenExpired()){
 
 
 function output_rostrify_stuff(){
-    echo $this->$client->getAuth();
+    echo $this->$client_id;
+//    echo $this->$client->getAuth();
 }
 
 //$client_secret;
