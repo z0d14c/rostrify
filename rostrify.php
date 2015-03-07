@@ -11,18 +11,13 @@
  * Network:
  * License: GPL2
 */
-
-/**
- * Unopinionated transport interface. This is what everything should expect to interact with
- */
-
 //set_include_path(get_include_path() . PATH_SEPARATOR . '/var/www/wp-content/libs/google-api-php-client/src');
 require_once ('/var/www/wp-content/libs/google-api-php-client/autoload.php');
 
 $client_id = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm.apps.googleusercontent.com';
 $client_email = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm@developer.gserviceaccount.com';
 $private_key = file_get_contents('/var/www/wp-content/plugins/rostrify/keys/WordpressProject-f31a9b7a563d.p12');
-$scopes = array('https://www.googleapis.com/auth/drive');
+$scopes = array('https://www.googleapis.com/auth/drive', 'https://spreadsheets.google.com/feeds');
 $credentials = new Google_Auth_AssertionCredentials(
     $client_email,
     $scopes,
@@ -36,7 +31,7 @@ if ($client->getAuth()->isAccessTokenExpired()){
 
 
 function output_rostrify_stuff(){
-    echo 'HEY DUDE HOW YA DOIN LOLOLOL';
+    echo $this->$client->getAuth();
 }
 
 //$client_secret;
@@ -44,10 +39,9 @@ function output_rostrify_stuff(){
 //$url;
 
 
-
-
-
-
+/**
+ * Unopinionated transport interface. This is what everything should expect to interact with
+ */
 
 interface MyPluginTransportInterface
 {
