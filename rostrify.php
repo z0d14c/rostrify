@@ -12,7 +12,9 @@
  * License: GPL2
 */
 //set_include_path(get_include_path() . PATH_SEPARATOR . '/var/www/wp-content/libs/google-api-php-client/src');
-require_once ('/var/www/wp-content/libs/google-api-php-client/autoload.php');
+require_once ('/var/www/wp-content/plugins/rostrify/vendor/autoload.php');
+//use Google\Spreadsheet\DefaultServiceRequest;
+//use Google\Spreadsheet\ServiceRequestFactory;
 
 $client_id = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm.apps.googleusercontent.com';
 $client_email = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm@developer.gserviceaccount.com';
@@ -49,8 +51,23 @@ function authenticateWithGoogle(){
 
 
 function output_rostrify_stuff(){
-    $client = authenticateWithGoogle();
+    use Google\Spreadsheet\DefaultServiceRequest;
+    use Google\Spreadsheet\ServiceRequestFactory;
 
+    $client = authenticateWithGoogle();
+    $mothafuckinaccesstoken = $client->getAccessToken();
+
+    $serviceRequest = new DefaultServiceRequest($mothafuckinaccesstoken);
+    ServiceRequestFactory::setInstance($serviceRequest);
+
+    $spreadsheetService = new Google\Spreadsheet\SpreadsheetService();
+    $spreadsheetFeed = $spreadsheetService->getSpreadsheets();
+    $spreadsheet = $spreadsheetFeed->getByTitle('testspreadsheet');
+    $worksheetFeed = $spreadsheet->getWorksheets();
+    $worksheet = $worksheetFeed->getByTitle('Sheet1');
+    $listFeed = $worksheet->getListFeed();
+
+    echo print_r($listFeed);
 //    $url = Google_Http_REST::createRequestUri(
 //        $servicePath,
 //        $method['path'],
