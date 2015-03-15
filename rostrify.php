@@ -50,7 +50,23 @@ function authenticateWithGoogle(){
 
 function output_rostrify_stuff(){
     $client = authenticateWithGoogle();
-    echo 'WHY DOES NOTHING WORK IN THIS LIFE';
+
+//    $url = Google_Http_REST::createRequestUri(
+//        $servicePath,
+//        $method['path'],
+//        $parameters
+//    );
+//
+//    $httpRequest = new Google_Http_Request(
+//        $url,
+//        $method['httpMethod'],
+//        null,
+//        $postBody
+//    );
+
+//    $httpRequest->setBaseComponent($this->client->getBasePath());
+
+//    $client->execute($httpRequest);
 }
 
 
