@@ -13,8 +13,8 @@
 */
 //set_include_path(get_include_path() . PATH_SEPARATOR . '/var/www/wp-content/libs/google-api-php-client/src');
 require_once ('/var/www/wp-content/plugins/rostrify/vendor/autoload.php');
-//use Google\Spreadsheet\DefaultServiceRequest;
-//use Google\Spreadsheet\ServiceRequestFactory;
+use Google\Spreadsheet\DefaultServiceRequest;
+use Google\Spreadsheet\ServiceRequestFactory;
 
 $client_id = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm.apps.googleusercontent.com';
 $client_email = '509447046148-7821ju5c00qvfjcno5l5cv1fd7n1vgbm@developer.gserviceaccount.com';
@@ -51,8 +51,6 @@ function authenticateWithGoogle(){
 
 
 function output_rostrify_stuff(){
-    use Google\Spreadsheet\DefaultServiceRequest;
-    use Google\Spreadsheet\ServiceRequestFactory;
 
     $client = authenticateWithGoogle();
     $mothafuckinaccesstoken = $client->getAccessToken();
